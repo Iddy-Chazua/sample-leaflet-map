@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sample leafleat map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  ##Adding leaflet ribrary can be copied from here https://leafletjs.com/examples/quick-start/
+
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+   crossorigin=""/>
+
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+   integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+   crossorigin=""></script>
+
+
+  <style type="text/css">
+    body {
+       margin: 0;
+       padding: 0;
+    }
+    html, body, #map{
+       width: 100%;
+       height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+      var map = L.map('map').setView([-6.210176413, 39.3723947165], 10.5);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        minZoom: 0,
+        maxZoom: 21,
+        tms: false,
+
+      }).addTo(map);
+      var marker = L.marker([-6.210176413, 39.3723947165]).addTo(map);
+
+      var circle = L.circle([-6.210176413, 39.4723947165], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+    }).addTo(map);
+
+        var popup = L.popup()
+        function onMapClick(e) {
+    popup
+           .setLatLng([-6.210176413, 39.4723947165])
+            .setContent("Hello, this is my first Leaflet map, just for preview and adding marker. Next step will be using external data like csv.")
+            .openOn(map);
+            }
+            map.on('click', onMapClick);
+
+  </script>
+</body>
+</html>
